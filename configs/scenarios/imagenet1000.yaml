@@ -1,0 +1,4 @@
+dataset_name: imagenet1000
+dataset_root: ~/data/datasets/imagenet1000/
+train_transform: imagenet_train_1
+test_transform: imagenet_test_1

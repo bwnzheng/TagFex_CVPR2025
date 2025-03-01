@@ -1,0 +1,7 @@
+dataset_name: cifar100
+dataset_root: ~/data/datasets/cifar100/
+train_transform: cifar100_train_2
+test_transform: cifar100_test_1
+ffcv: true
+train_beton_path: ~/data/datasets/ffcv_beton/cifar100_train.beton
+val_beton_path: ~/data/datasets/ffcv_beton/cifar100_val.beton

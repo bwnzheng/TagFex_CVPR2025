@@ -1,0 +1,7 @@
+dataset_name: imagenet1000
+dataset_root: ~/data/datasets/imagenet1000/
+train_transform: imagenet_train_2
+test_transform: imagenet_test_1
+ffcv: true
+train_beton_path: ~/data/datasets/ffcv_beton/imagenet1000_train.beton
+val_beton_path: ~/data/datasets/ffcv_beton/imagenet1000_val.beton

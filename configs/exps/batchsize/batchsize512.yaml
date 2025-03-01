@@ -1,0 +1,7 @@
+trainloader_params:
+  batch_size: 512
+  num_workers: 8
+
+testloader_params:
+  batch_size: 768
+  num_workers: 8

@@ -1,0 +1,50 @@
+method: icarl
+
+init_epochs: 200 # 200
+inc_epochs: 170 # 170
+eval_interval: 5
+
+kd_temp: 2
+
+backbone_configs: 
+  name: resnet18
+
+network_configs:
+  classifier_type: 'unified' # or 'separated'
+
+memory_configs:
+  memory_size: 2000
+
+trainloader_params:
+  batch_size: 128
+  num_workers: 8
+
+testloader_params:
+  batch_size: 192
+  num_workers: 8
+
+init_optimizer_configs:
+  name: sgd
+  params:
+    lr: 0.1
+    momentum: 0.9
+    weight_decay: 5.e-4
+
+init_scheduler_configs:
+  name: multistep
+  params:
+    milestones: [60, 120, 170]
+    gamma: 0.1
+
+inc_optimizer_configs:
+  name: sgd
+  params:
+    lr: 0.1
+    momentum: 0.9
+    weight_decay: 2.e-4
+
+inc_scheduler_configs:
+  name: multistep
+  params:
+    milestones: [80, 120]
+    gamma: 0.1

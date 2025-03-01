@@ -1,0 +1,76 @@
+scenario: cil 50-10
+dataset_name: cifar100
+dataset_root: ~/data/datasets/cifar100/
+train_transform: cifar100_train_2
+test_transform: cifar100_test_1
+class_order: [68, 56, 78, 8, 23, 84, 90, 65, 74, 76, 40, 89, 3, 92, 55, 9, 26, 80, 43, 38, 58, 70, 77, 1, 85, 19, 17, 50, 28, 53, 13, 81, 45, 82, 6, 59, 83, 16, 15, 44, 91, 41, 72, 60, 79, 52, 20, 10, 31, 54, 37, 95, 14, 71, 96, 98, 97, 2, 64, 66, 42, 22, 35, 86, 24, 34, 87, 21, 99, 0, 88, 27, 18, 94, 11, 12, 47, 25, 30, 46, 62, 69, 36, 61, 7, 63, 75, 5, 32, 4, 51, 48, 73, 93, 39, 67, 29, 49, 57, 33]
+
+method: tagfex
+
+init_epochs: 200 # 200
+inc_epochs: 170 # 170
+eval_interval: 5
+
+
+contrast_factor: 1
+contrast_kd_factor: 2
+aux_factor: 2
+trans_cls_factor: 1
+transfer_factor: 1
+
+infonce_temp: 0.2
+infonce_kd_temp: 0.2
+kd_temp: 2
+num_aug: 2
+
+backbone_configs: 
+  name: resnet32
+
+network_configs:
+  classifier_type: 'unified'
+  proj_hidden_dim: 512
+  proj_output_dim: 128
+  init_from_last: false
+  init_from_interpolation: true
+  init_interpolation_factor: 0.95
+  attn_num_heads: 8
+  merge_attn: true
+
+memory_configs:
+  fixed_size: false
+  memory_size: 2000
+
+trainloader_params:
+  batch_size: 128
+  num_workers: 8
+  drop_last: true
+
+testloader_params:
+  batch_size: 192
+  num_workers: 8
+
+init_optimizer_configs:
+  name: sgd
+  params:
+    lr: 0.1
+    momentum: 0.9
+    weight_decay: 5.e-4
+
+init_scheduler_configs:
+  name: multistep
+  params:
+    milestones: [60, 120, 170]
+    gamma: 0.1
+
+inc_optimizer_configs:
+  name: sgd
+  params:
+    lr: 0.1
+    momentum: 0.9
+    weight_decay: 2.e-4
+
+inc_scheduler_configs:
+  name: multistep
+  params:
+    milestones: [80, 120, 150]
+    gamma: 0.1
