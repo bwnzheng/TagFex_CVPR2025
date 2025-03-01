@@ -1,0 +1,4 @@
+dataset_name: cub200
+dataset_root: ~/data/datasets/CUB_200_2011/
+train_transform: imagenet_train_2
+test_transform: imagenet_test_1

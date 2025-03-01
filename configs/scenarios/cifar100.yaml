@@ -1,0 +1,4 @@
+dataset_name: cifar100
+dataset_root: ~/data/datasets/cifar100/
+train_transform: cifar100_train_1
+test_transform: cifar100_test_1
