@@ -1,4 +1,4 @@
-scenario: cil 50-10
+scenario: cil 10-10
 dataset_name: cifar100
 dataset_root: ~/data/datasets/cifar100/
 train_transform: cifar100_train_2
@@ -24,12 +24,12 @@ kd_temp: 2
 num_aug: 2
 
 backbone_configs: 
-  name: resnet32
+  name: resnet18
 
 network_configs:
   classifier_type: 'unified'
-  proj_hidden_dim: 512
-  proj_output_dim: 128
+  proj_hidden_dim: 2048
+  proj_output_dim: 1024
   init_from_last: false
   init_from_interpolation: true
   init_interpolation_factor: 0.95
@@ -43,11 +43,12 @@ memory_configs:
 trainloader_params:
   batch_size: 128
   num_workers: 8
-  drop_last: true
+  drop_last: false
 
 testloader_params:
   batch_size: 192
   num_workers: 8
+  drop_last: false
 
 init_optimizer_configs:
   name: sgd

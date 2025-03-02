@@ -31,13 +31,13 @@ Multi-node training (for large datasets like ImageNet)
 ```
 
 Specify cuda device available in `{gpu_ids}`.
-Specify config files in `{exp_config_files}`, this argument accepts multiple values, the loading order is the same as the argument order. (see [`load_configs` function](utils/configuration.py#11))
+Specify config files in `{exp_config_files}`, this argument accepts multiple values, the loading order is the same as the argument order. (see [`load_configs` function](utils/configuration.py#L11))
 
 Example:
 
 ``` bash
-python main.py train --exp-configs configs/all_in_one/cifar100_10-10_tagfex_resnet32.yaml --log-dir ./logs/exp_cifar100_10-10
-./trainddp.sh 0,1,2,3 --exp-configs configs/all_in_one/cifar100_10-10_tagfex_resnet32.yaml --log-dir ./logs/exp_cifar100_10-10
+python main.py train --exp-configs configs/all_in_one/cifar100_10-10_tagfex_resnet18.yaml --log-dir ./logs/exp_cifar100_10-10
+./trainddp.sh 0,1,2,3 --exp-configs configs/all_in_one/cifar100_10-10_tagfex_resnet18.yaml --log-dir ./logs/exp_cifar100_10-10
 ```
 
 Other useful arguments:
