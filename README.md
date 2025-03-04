@@ -4,7 +4,7 @@ This is the code repo for Task-Agnostic Guided Feature Expansion for Class-Incre
 
 TL;DR: We propose **TagFex** framework to address _feature collision_ in Class-Incremental Learning. TagFex features in continuously capturing task-agnostic features through a separate unsupervised model. TagFex achieves superior performance by a large margin, comparing to other expansion-based methods training models from scratch.
 
-[[arxiv]]()
+[[arxiv]](https://arxiv.org/abs/2503.00823)
 
 ![motivation](assets/motivation.svg)
 
