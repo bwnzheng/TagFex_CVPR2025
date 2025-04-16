@@ -110,13 +110,14 @@ class HerdingIndicesLearner(RehearsalLearner):
             class_dataset = self.data_manager.get_dataset_by_class_ids([inherent_class_id], split='train', mode='test')
             
             class_features = self.extract_herding_features(class_dataset)
+            assert len(class_features) >= self.num_exemplars_per_class, f'Number of exemplers ({len(class_features)}) exceeds number of samples ({self.num_exemplars_per_class}) in class {class_id}.'
             class_mean = class_features.mean(dim=0, keepdim=True) # true class_mean of normed features
             
             class_selected_indices = []
             actual_idx_without_removal = torch.arange(len(class_features))
             selected_mean = torch.zeros((self.local_network.feature_dim,), device=self.device)
             for n in range(1, self.num_exemplars_per_class + 1):
-                # self.print_logger.debug(f'[{class_id}/{num_classes}][{n}/{self.num_exemplars_per_class+1}] exemplars update memory')
+                # self.print_logger.debug(f'[{class_id}/{num_classes}][{n}/{self.num_exemplars_per_class}] exemplars update memory, selected_mean {selected_mean.shape}, class_features {class_features.shape}')
                 mu_p = ((n-1) * selected_mean + class_features) / n # try adding each sample feature to memory and compute mean
                 idx = (mu_p - class_mean).norm(dim=-1).argmin().item() # compute the difference between the true class_mean, finding the best one.
                 
