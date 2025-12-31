@@ -110,7 +110,7 @@ class HerdingIndicesLearner(RehearsalLearner):
             class_dataset = self.data_manager.get_dataset_by_class_ids([inherent_class_id], split='train', mode='test')
             
             class_features = self.extract_herding_features(class_dataset)
-            assert len(class_features) >= self.num_exemplars_per_class, f'Number of exemplers ({len(class_features)}) exceeds number of samples ({self.num_exemplars_per_class}) in class {class_id}.'
+            assert len(class_features) >= self.num_exemplars_per_class, f'Number of exemplers ({self.num_exemplars_per_class}) exceeds number of samples ({len(class_features)}) in class {class_id}.'
             class_mean = class_features.mean(dim=0, keepdim=True) # true class_mean of normed features
             
             class_selected_indices = []
